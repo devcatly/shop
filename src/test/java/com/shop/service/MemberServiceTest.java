@@ -1,4 +1,4 @@
-package com.shop.sevice;
+package com.shop.service;
 
 import com.shop.dto.MemberFormDto;
 import com.shop.entity.Member;
@@ -15,9 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(locations="classpath:application-test.properties")
 class MemberServiceTest {
-
 
     @Autowired
     MemberService memberService;
@@ -25,7 +24,7 @@ class MemberServiceTest {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public Member createMember() {
+    public Member createMember(){
         MemberFormDto memberFormDto = new MemberFormDto();
         memberFormDto.setEmail("test@email.com");
         memberFormDto.setName("홍길동");
@@ -36,7 +35,7 @@ class MemberServiceTest {
 
     @Test
     @DisplayName("회원가입 테스트")
-    public void saveMemberTest() {
+    public void saveMemberTest(){
         Member member = createMember();
         Member savedMember = memberService.saveMember(member);
         assertEquals(member.getEmail(), savedMember.getEmail());
@@ -45,7 +44,6 @@ class MemberServiceTest {
         assertEquals(member.getPassword(), savedMember.getPassword());
         assertEquals(member.getRole(), savedMember.getRole());
     }
-
 
     @Test
     @DisplayName("중복 회원 가입 테스트")
